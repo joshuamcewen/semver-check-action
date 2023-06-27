@@ -1,7 +1,7 @@
 {
   "name": "semver-check-action",
   "main": "dist/index.js",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "scripts": {
     "build": "tsc",
     "start": "node dist/index.js",

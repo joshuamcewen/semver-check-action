@@ -13,7 +13,7 @@ This action is intended for validating version increments as part of CI. It does
 ## Example Usage
 
 ```yaml
-uses: joshuamcewen/semver-check-action@1.0.0
+uses: joshuamcewen/semver-check-action@1.0.1
 with:
   current-version: '0.0.1'
   branch-version: '0.0.2'
@@ -22,17 +22,15 @@ with:
 ### Pulling from package.json
 ```yaml
   - name: Get main version
-    id: main
     run: |
       git fetch origin main:main
-      echo "::set-output name=VERSION::$(git show main:package.json | jq -r ".version")"
+      echo "main_version=$(git show main:package.json | jq -r ".version")" >> "$GITHUB_ENV"
 
   - name: Get current branch version
-    id: branch
-    run: echo "::set-output name=VERSION::$(jq -r ".version" package.json)"
+    run: echo "branch_version=$(jq -r ".version" package.json)" >> "$GITHUB_ENV"
 
-  - uses: joshuamcewen/semver-check-action@v1.0.0
+  - uses: joshuamcewen/semver-check-action@v1.0.1
     with:
-      current-version: ${{ steps.main.outputs.VERSION }}
-      branch-version: ${{ steps.branch.outputs.VERSION }}
+      current-version: ${{ env.main_version }}
+      branch-version: ${{ env.branch_version }}
 ```
