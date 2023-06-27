@@ -39,6 +39,7 @@ const run = () => {
         process_1.default.exit(1);
         return;
     }
+    console.log(`${green(branchVersion)} is valid.`);
     process_1.default.exit(0);
 };
 exports.run = run;
