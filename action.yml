@@ -1,4 +1,4 @@
-name: 'First interaction'
+name: 'SemVer Check Action'
 description: 'Validates semver version is correct patch, minor or major increment'
 inputs:
   current-version:
