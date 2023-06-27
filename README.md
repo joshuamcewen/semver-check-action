@@ -13,7 +13,7 @@ This action is intended for validating version increments as part of CI. It does
 ## Example Usage
 
 ```yaml
-uses: joshuamcewen/semver-check-action@0.0.1
+uses: joshuamcewen/semver-check-action@1.0.0
 with:
   current-version: '0.0.1'
   branch-version: '0.0.2'
