@@ -1,3 +1,7 @@
+// @ts-ignore
+import { setup } from "../.pnp.cjs";
+setup();
+
 import { getInput } from "@actions/core";
 import semver from "semver";
 import process from "process";

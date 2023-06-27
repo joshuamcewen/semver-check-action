@@ -4,6 +4,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.run = void 0;
+// @ts-ignore
+const _pnp_cjs_1 = require("../.pnp.cjs");
+(0, _pnp_cjs_1.setup)();
 const core_1 = require("@actions/core");
 const semver_1 = __importDefault(require("semver"));
 const process_1 = __importDefault(require("process"));
@@ -11,12 +14,6 @@ const red = (value) => `\u001b[31m${value}\u001b[39m`;
 const green = (value) => `\u001b[32m${value}\u001b[39m`;
 const magenta = (value) => `\u001b[35m${value}\u001b[39m`;
 const cyan = (value) => `\u001b[36m${value}\u001b[39m`;
-const checkIsValidVersion = (type, version) => {
-    if (!semver_1.default.valid(version)) {
-        console.log(`${type} version (${red(version)}) is not a valid version.`);
-        process_1.default.exit(1);
-    }
-};
 const run = () => {
     const currentVersion = (0, core_1.getInput)("current-version");
     if (!semver_1.default.valid(currentVersion)) {
