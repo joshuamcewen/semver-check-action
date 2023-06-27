@@ -11,13 +11,29 @@ const red = (value) => `\u001b[31m${value}\u001b[39m`;
 const green = (value) => `\u001b[32m${value}\u001b[39m`;
 const magenta = (value) => `\u001b[35m${value}\u001b[39m`;
 const cyan = (value) => `\u001b[36m${value}\u001b[39m`;
+const checkIsValidVersion = (type, version) => {
+    if (!semver_1.default.valid(version)) {
+        console.log(`${type} version (${red(version)}) is not a valid version.`);
+        process_1.default.exit(1);
+    }
+};
 const run = () => {
     const currentVersion = (0, core_1.getInput)("current_version");
+    if (!semver_1.default.valid(currentVersion)) {
+        console.log(`Current version (${red(currentVersion)}) is not a valid.`);
+        process_1.default.exit(1);
+        return;
+    }
+    const branchVersion = (0, core_1.getInput)("branch_version");
+    if (!semver_1.default.valid(branchVersion)) {
+        console.log(`Branch version (${red(branchVersion)}) is not a valid.`);
+        process_1.default.exit(1);
+        return;
+    }
     const nextPatchVersion = semver_1.default.inc(currentVersion, "patch") || "";
     const nextMinorVersion = semver_1.default.inc(currentVersion, "minor") || "";
     const nextMajorVersion = semver_1.default.inc(currentVersion, "major") || "";
     const validVersions = [nextPatchVersion, nextMinorVersion, nextMajorVersion];
-    const branchVersion = (0, core_1.getInput)("branch_version");
     if (!validVersions.includes(branchVersion)) {
         console.log(`Current branch version ${red(branchVersion)} is not one of:`);
         console.log(`• ${magenta("Patch")} version: ${magenta(nextPatchVersion)}`);

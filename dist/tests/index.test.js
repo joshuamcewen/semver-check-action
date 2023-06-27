@@ -25,7 +25,36 @@ const process_1 = __importDefault(require("process"));
             "• \x1B[36mMinor\x1B[39m version: \x1B[36m0.1.0\x1B[39m",
             "• \x1B[32mMajor\x1B[39m version: \x1B[32m1.0.0\x1B[39m",
         ]);
-        node_test_1.mock.reset();
+    });
+    (0, node_test_1.it)("prints error and exits with exit code 1 when badly formatted current version", () => {
+        const mockExit = node_test_1.mock.fn();
+        process_1.default.exit = mockExit;
+        const mockLog = node_test_1.mock.fn();
+        console.log = mockLog;
+        process_1.default.env.INPUT_CURRENT_VERSION = "bad-current-version";
+        process_1.default.env.INPUT_BRANCH_VERSION = "0.0.1";
+        (0, index_1.run)();
+        assert_1.default.equal(mockExit.mock.calls.length, 1);
+        assert_1.default.deepEqual(mockExit.mock.calls[0].arguments, [1]);
+        assert_1.default.equal(mockLog.mock.calls.length, 1);
+        assert_1.default.deepEqual(mockLog.mock.calls[0].arguments, [
+            "Current version (\x1B[31mbad-current-version\x1B[39m) is not a valid.",
+        ]);
+    });
+    (0, node_test_1.it)("prints error and exits with exit code 1 when badly formatted branch version", () => {
+        const mockExit = node_test_1.mock.fn();
+        process_1.default.exit = mockExit;
+        const mockLog = node_test_1.mock.fn();
+        console.log = mockLog;
+        process_1.default.env.INPUT_CURRENT_VERSION = "0.0.1";
+        process_1.default.env.INPUT_BRANCH_VERSION = "bad-branch-version";
+        (0, index_1.run)();
+        assert_1.default.equal(mockExit.mock.calls.length, 1);
+        assert_1.default.deepEqual(mockExit.mock.calls[0].arguments, [1]);
+        assert_1.default.equal(mockLog.mock.calls.length, 1);
+        assert_1.default.deepEqual(mockLog.mock.calls[0].arguments, [
+            "Branch version (\x1B[31mbad-branch-version\x1B[39m) is not a valid.",
+        ]);
     });
     (0, node_test_1.it)("exits with exit code 0 when valid patch version", () => {
         const mockExit = node_test_1.mock.fn();
