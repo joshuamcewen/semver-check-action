@@ -1,0 +1,12 @@
+name: 'First interaction'
+description: 'Validates semver version is correct patch, minor or major increment'
+inputs:
+  current-version:
+    description: 'Version from the default/integrated branch'
+    required: true
+  branch-version:
+    description: 'Version from the current branch'
+    required: true
+runs:
+  using: 'node16'
+  main: 'dist/index.js'
