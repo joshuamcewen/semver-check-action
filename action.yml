@@ -1,5 +1,8 @@
 name: 'SemVer Check Action'
 description: 'Validates semver version is correct patch, minor or major increment'
+branding:
+  icon: 'check'
+  color: 'blue'
 inputs:
   current-version:
     description: 'Version from the default/integrated branch'
