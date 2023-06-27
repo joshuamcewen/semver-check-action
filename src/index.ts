@@ -7,13 +7,6 @@ const green = (value: string) => `\u001b[32m${value}\u001b[39m`;
 const magenta = (value: string) => `\u001b[35m${value}\u001b[39m`;
 const cyan = (value: string) => `\u001b[36m${value}\u001b[39m`;
 
-const checkIsValidVersion = (type: string, version: string) => {
-  if (!semver.valid(version)) {
-    console.log(`${type} version (${red(version)}) is not a valid version.`);
-    process.exit(1);
-  }
-};
-
 export const run = () => {
   const currentVersion = getInput("current-version");
   if (!semver.valid(currentVersion)) {
