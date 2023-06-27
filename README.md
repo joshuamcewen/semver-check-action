@@ -29,7 +29,7 @@ with:
   - name: Get current branch version
     run: echo "branch_version=$(jq -r ".version" package.json)" >> "$GITHUB_ENV"
 
-  - uses: joshuamcewen/semver-check-action@v1.0.1
+  - uses: joshuamcewen/semver-check-action@1.0.1
     with:
       current-version: ${{ env.main_version }}
       branch-version: ${{ env.branch_version }}
