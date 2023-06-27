@@ -21,8 +21,18 @@ with:
 
 ### Pulling from package.json
 ```yaml
-uses: joshuamcewen/semver-check-action@0.0.1
-with:
-  current-version: $(jq -r ".version" | git show main:package.json)
-  branch-version: $(jq -r ".version" | package.json)
+  - name: Get main version
+    id: main
+    run: |
+      git fetch origin main:main
+      echo "::set-output name=VERSION::$(git show main:package.json | jq -r ".version")"
+
+  - name: Get current branch version
+    id: branch
+    run: echo "::set-output name=VERSION::$(jq -r ".version" package.json)"
+
+  - uses: joshuamcewen/semver-check-action@v1.0.0
+    with:
+      current-version: ${{ steps.main.outputs.VERSION }}
+      branch-version: ${{ steps.branch.outputs.VERSION }}
 ```
