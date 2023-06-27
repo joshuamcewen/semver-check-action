@@ -15,14 +15,14 @@ const checkIsValidVersion = (type: string, version: string) => {
 };
 
 export const run = () => {
-  const currentVersion = getInput("current_version");
+  const currentVersion = getInput("current-version");
   if (!semver.valid(currentVersion)) {
     console.log(`Current version (${red(currentVersion)}) is not a valid.`);
     process.exit(1);
     return;
   }
 
-  const branchVersion = getInput("branch_version");
+  const branchVersion = getInput("branch-version");
   if (!semver.valid(branchVersion)) {
     console.log(`Branch version (${red(branchVersion)}) is not a valid.`);
     process.exit(1);

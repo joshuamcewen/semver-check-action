@@ -18,13 +18,13 @@ const checkIsValidVersion = (type, version) => {
     }
 };
 const run = () => {
-    const currentVersion = (0, core_1.getInput)("current_version");
+    const currentVersion = (0, core_1.getInput)("current-version");
     if (!semver_1.default.valid(currentVersion)) {
         console.log(`Current version (${red(currentVersion)}) is not a valid.`);
         process_1.default.exit(1);
         return;
     }
-    const branchVersion = (0, core_1.getInput)("branch_version");
+    const branchVersion = (0, core_1.getInput)("branch-version");
     if (!semver_1.default.valid(branchVersion)) {
         console.log(`Branch version (${red(branchVersion)}) is not a valid.`);
         process_1.default.exit(1);

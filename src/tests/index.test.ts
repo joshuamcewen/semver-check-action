@@ -11,8 +11,8 @@ describe("action", () => {
     const mockLog = mock.fn();
     console.log = mockLog as never;
 
-    process.env.INPUT_CURRENT_VERSION = "0.0.1";
-    process.env.INPUT_BRANCH_VERSION = "0.0.1";
+    process.env["INPUT_CURRENT-VERSION"] = "0.0.1";
+    process.env["INPUT_BRANCH-VERSION"] = "0.0.1";
 
     run();
     assert.equal(mockExit.mock.calls.length, 1);
@@ -37,8 +37,8 @@ describe("action", () => {
     const mockLog = mock.fn();
     console.log = mockLog as never;
 
-    process.env.INPUT_CURRENT_VERSION = "bad-current-version";
-    process.env.INPUT_BRANCH_VERSION = "0.0.1";
+    process.env["INPUT_CURRENT-VERSION"] = "bad-current-version";
+    process.env["INPUT_BRANCH-VERSION"] = "0.0.1";
 
     run();
     assert.equal(mockExit.mock.calls.length, 1);
@@ -57,8 +57,8 @@ describe("action", () => {
     const mockLog = mock.fn();
     console.log = mockLog as never;
 
-    process.env.INPUT_CURRENT_VERSION = "0.0.1";
-    process.env.INPUT_BRANCH_VERSION = "bad-branch-version";
+    process.env["INPUT_CURRENT-VERSION"] = "0.0.1";
+    process.env["INPUT_BRANCH-VERSION"] = "bad-branch-version";
 
     run();
     assert.equal(mockExit.mock.calls.length, 1);
@@ -74,8 +74,8 @@ describe("action", () => {
     const mockExit = mock.fn();
     process.exit = mockExit as never;
 
-    process.env.INPUT_CURRENT_VERSION = "0.0.1";
-    process.env.INPUT_BRANCH_VERSION = "0.0.2";
+    process.env["INPUT_CURRENT-VERSION"] = "0.0.1";
+    process.env["INPUT_BRANCH-VERSION"] = "0.0.2";
 
     run();
     assert.equal(mockExit.mock.calls.length, 1);
@@ -86,8 +86,8 @@ describe("action", () => {
     const mockExit = mock.fn();
     process.exit = mockExit as never;
 
-    process.env.INPUT_CURRENT_VERSION = "0.0.1";
-    process.env.INPUT_BRANCH_VERSION = "0.1.0";
+    process.env["INPUT_CURRENT-VERSION"] = "0.0.1";
+    process.env["INPUT_BRANCH-VERSION"] = "0.1.0";
 
     run();
     assert.equal(mockExit.mock.calls.length, 1);
@@ -98,8 +98,8 @@ describe("action", () => {
     const mockExit = mock.fn();
     process.exit = mockExit as never;
 
-    process.env.INPUT_CURRENT_VERSION = "0.0.1";
-    process.env.INPUT_BRANCH_VERSION = "1.0.0";
+    process.env["INPUT_CURRENT-VERSION"] = "0.0.1";
+    process.env["INPUT_BRANCH-VERSION"] = "1.0.0";
 
     run();
     assert.equal(mockExit.mock.calls.length, 1);
