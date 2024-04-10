@@ -11,5 +11,5 @@ inputs:
     description: 'Version from the current branch'
     required: true
 runs:
-  using: 'node20'
+  using: 'node16'
   main: 'dist/index.js'
